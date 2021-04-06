@@ -20,6 +20,10 @@ dbConnection();
 
 // Rutas
 app.use('/api/users', require('./routes/users'));
+app.use('/api/companies', require('./routes/companies'));
+app.use('/api/customers', require('./routes/customers'));
+app.use('/api/search', require('./routes/search'));
+app.use('/api/uploads', require('./routes/uploads'));
 app.use('/api/login', require('./routes/auth'));
 
 
