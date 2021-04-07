@@ -43,25 +43,75 @@ const createCompany = async (req, res) => {
 
 const updateCompany = async (req, res) => {
 
+    const id = req.params.id
+    const userId = req.id
 
-    const companies = await Company.find();
+    try {
+        const companies = await Company.findById(id);
 
-    res.status(200).json({
-        ok: true,
-        msg: 'Empresa actualizada'
-    });
+        if ( !companies ){
+            res.status(404).json({
+                ok: false,
+                msg: "Empresa no encontrada"
+            });
+        }
+
+        const currentCompany = {
+            ...req.body,
+            user: userId,
+        }
+
+
+        const companyUpdate = await Company.findByIdAndUpdate( id, currentCompany, { new: true } );
+
+        res.status(200).json({
+            ok: true,
+            Comany: companyUpdate
+        });
+        
+    } catch (error) {
+
+        res.status(500).json({
+            ok: false,
+            msg: "Hable con el administrador"
+        });
+        
+    }
 }
 
 const deleteCompany = async (req, res) => {
 
+    const id = req.params.id
+    
+    try {
+        
+        const company = await Company.findById(id);
 
-    const companies = await Company.find();
+        if ( !company ){
+            res.status(404).json({
+                ok: false,
+                msg: "Empresa no encontrada"
+            });
+        }
 
-    res.status(200).json({
-        ok: true,
-        msg: 'Empresa eliminada'
-    });
+
+        await Company.findByIdAndDelete( id );
+
+        res.status(200).json({
+            ok: true,
+            msg: "Empresa eliminada"
+        });
+        
+    } catch (error) {
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+    }
 }
+
+    
 
 module.exports = {
     getCompanies,

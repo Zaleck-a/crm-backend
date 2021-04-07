@@ -23,11 +23,18 @@ router.post('/',
 );
 
  router.put('/:id', 
-    [],
+    [
+        validateJWT,
+        check('name', 'El nombre es necesario').not().isEmpty(),
+        validateFields
+    ],
     updateCompany
 );
 
-router.delete('/:id', deleteCompany );
+router.delete('/:id',
+    validateJWT,
+    deleteCompany 
+);
 
 module.exports = router;
 

@@ -39,20 +39,74 @@ const createCustomer = async (req, res) => {
 
 const updateCustomer = async (req, res) => {
 
+    const id = req.params.id
+    const userId = req.id
+    
 
-    res.status(200).json({
-        ok: true,
-        msg: 'Cliente actualizado'
-    });
+    try {
+
+        const customer = await Customer.findById(id);
+
+        if ( !customer ){
+            res.status(404).json({
+                ok: false,
+                msg: "Cliente no encontrado"
+            });
+        }
+
+        const currentCustomer = {
+            ...req.body,
+            user: userId,
+        }
+
+
+        const customerUpdate = await Customer.findByIdAndUpdate( id, currentCustomer, { new: true } );
+
+        res.status(200).json({
+            ok: true,
+            Customer: customerUpdate
+        });
+        
+    } catch (error) {
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Comunicate con el administrador'
+        });
+
+    }
 }
 
 const deleteCustomer = async (req, res) => {
 
+    const id = req.params.id
+    
+    try {
+        
+        const customer = await Customer.findById(id);
 
-    res.status(200).json({
-        ok: true,
-        msg: 'Cliente eliminado'
-    });
+        if ( !customer ){
+            res.status(404).json({
+                ok: false,
+                msg: "El cliente no fue encontrado"
+            });
+        }
+
+
+        await Customer.findByIdAndDelete( id );
+
+        res.status(200).json({
+            ok: true,
+            msg: "El cliente fue eliminado"
+        });
+        
+    } catch (error) {
+
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+    }
 }
 
 

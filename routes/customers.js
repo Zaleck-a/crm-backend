@@ -24,10 +24,18 @@ router.post('/',
 );
 
  router.put('/:id', 
-    [],
+    [
+        validateJWT,
+        check('name', 'Es nombre del cliente es necesario').not().isEmpty(),
+        check('company', 'El id de la compañia debe ser validado').isMongoId(),
+        validateFields
+    ],
     updateCustomer
 );
 
-router.delete('/:id', deleteCustomer );
+router.delete('/:id', 
+    validateJWT,
+    deleteCustomer
+);
 
 module.exports = router;
