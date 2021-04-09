@@ -48,7 +48,7 @@ const updateCustomer = async (req, res) => {
         const customer = await Customer.findById(id);
 
         if ( !customer ){
-            res.status(404).json({
+            return res.status(404).json({
                 ok: false,
                 msg: "Cliente no encontrado"
             });
@@ -86,7 +86,7 @@ const deleteCustomer = async (req, res) => {
         const customer = await Customer.findById(id);
 
         if ( !customer ){
-            res.status(404).json({
+            return res.status(404).json({
                 ok: false,
                 msg: "El cliente no fue encontrado"
             });

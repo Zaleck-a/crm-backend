@@ -50,7 +50,7 @@ const updateCompany = async (req, res) => {
         const companies = await Company.findById(id);
 
         if ( !companies ){
-            res.status(404).json({
+            return res.status(404).json({
                 ok: false,
                 msg: "Empresa no encontrada"
             });
@@ -88,7 +88,7 @@ const deleteCompany = async (req, res) => {
         const company = await Company.findById(id);
 
         if ( !company ){
-            res.status(404).json({
+            return res.status(404).json({
                 ok: false,
                 msg: "Empresa no encontrada"
             });
