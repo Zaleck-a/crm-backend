@@ -12,6 +12,33 @@ const getCustomers = async (req, res) => {
     });
 }
 
+const getCustomer = async (req, res) => {
+
+    const id = req.params.id
+
+    try {
+        
+        const customer = await Customer.findById(id)
+                                        .populate('user', 'name')
+                                        .populate('company', 'name');
+    
+        res.status(200).json({
+            ok: true,
+            customer
+        });
+
+    } catch (error) {
+        
+        res.status(500).json({
+            ok: false,
+            msg: 'Hable con el administrador'
+        });
+
+    }
+
+}
+
+
 const createCustomer = async (req, res) => {
 
     const id = req.id
@@ -114,5 +141,6 @@ module.exports = {
     getCustomers,
     createCustomer,
     updateCustomer,
-    deleteCustomer
+    deleteCustomer,
+    getCustomer
 }

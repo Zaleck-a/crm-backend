@@ -39,7 +39,7 @@ const fileUpload = ( req, res) => {
     if( !validExtencions.includes( fileExtencion )){
         return res.status(400).json({
             ok: false,
-            msg: 'No es uina extencion permitida'
+            msg: 'No es una extencion permitida'
         });
     }
 

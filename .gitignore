@@ -1,2 +1,10 @@
 node_modules
 .env
+
+
+uploads/users/**
+uploads/companies/**
+uploads/customers/**
+!uploads/users/.gitkeep
+!uploads/companies/.gitkeep
+!uploads/customers/.gitkeep

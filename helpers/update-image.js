@@ -35,7 +35,7 @@ const updateImage = async ( type, id, fileName ) => {
         case 'companies':
             const company = await Company.findById(id);
             if( !company ){
-                console.log('No es un cliente');
+                console.log('No es una compañia');
                 return false;
             }
 
@@ -51,7 +51,7 @@ const updateImage = async ( type, id, fileName ) => {
         case 'users':
             const user = await User.findById(id);
             if( !user ){
-                console.log('No es un cliente');
+                console.log('No es un usuario');
                 return false;
             }
 
