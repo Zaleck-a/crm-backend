@@ -12,8 +12,6 @@ const { validateJWT } = require('../middlewares/validate-jwt');
 const router = Router();
 
 
-
-
 router.post('/', 
     [
         check('email', 'El email es obligatorio').isEmail(),
@@ -35,9 +33,5 @@ router.get('/renew',
     validateJWT,
     renewToken
 );
-
-
-
-
 
 module.exports = router;

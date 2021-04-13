@@ -6,7 +6,7 @@ const dbConnection = async () => {
             useNewUrlParser: true, 
             useUnifiedTopology: true,
             useCreateIndex: true,
-            useFindAndModify: false
+            useFindAndModify: false,
         });
         console.log('online');
     }catch(error){
@@ -17,5 +17,5 @@ const dbConnection = async () => {
 
 
 module.exports = {
-    dbConnection
+    dbConnection,
 }

@@ -21,7 +21,7 @@ const login = async ( req, res = response) => {
             res.status(404).json({
                 ok: false,
                 msg: 'Email no valido'
-            })
+            });
         }
 
         // Validate password
@@ -31,7 +31,7 @@ const login = async ( req, res = response) => {
             return res.status(400).json({
                 ok: false,
                 msg: 'Contrseña no valida'
-            })
+            });
         }
 
         //Generate token
@@ -41,14 +41,14 @@ const login = async ( req, res = response) => {
             ok: true,
             token,
             menu: getMenu( userDB.role )
-        })
+        });
 
         
     } catch (error) {
         res.status(500).json({
             ok: false,
             msg: 'Hable con el administreador'
-        })
+        });
     }
 }
 
@@ -91,7 +91,7 @@ const googleSignIn = async ( req, res ) => {
             ok: true,
             token,
             menu: getMenu( user.role )
-        })
+        });
         
         
     } catch (error) {
@@ -99,7 +99,7 @@ const googleSignIn = async ( req, res ) => {
         res.status(401).json({
             ok: false,
             msg:'Invalid token!'
-        })
+        });
         
     }
 
@@ -120,7 +120,7 @@ const renewToken = async ( req, res ) => {
         token,
         user,
         menu: getMenu( user.role )
-    })
+    });
 
 }
 

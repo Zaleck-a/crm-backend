@@ -16,7 +16,7 @@ const getMenu = ( role = 'USER_ROLE') => {
           title: 'Mantenimiento',
           icon: 'nav-icon fas fa-toolbox',
           submenu: [
-            //{ title: 'Usuarios', url: 'users'},
+            // { title: 'Usuarios', url: 'users'},
             { title: 'Clientes', url: 'customers'},
             { title: 'Empresas', url: 'companies'},
           ]
