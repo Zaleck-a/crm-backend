@@ -5,22 +5,19 @@ const cors = require('cors');
 
 const { dbConnection } = require('./database/config')
 
-//Servidor de express
+//Server express
 const app = express();
 
-//Configurar CORS
+//Configure CORS
 app.use(cors());
 
-//Lectura y parese del body
+//Read and parese the body
 app.use( express.json() );
 
-//Base de datos
+//Data base
 dbConnection();
 
-//Public file
-app.use( express.static('public') );
-
-// Rutas
+// Routes
 app.use('/api/users', require('./routes/users'));
 app.use('/api/companies', require('./routes/companies'));
 app.use('/api/customers', require('./routes/customers'));
@@ -30,5 +27,5 @@ app.use('/api/login', require('./routes/auth'));
 
 
 app.listen( process.env.PORT, () => {
-    console.log('Servidor desde el puerto: ' + process.env.PORT);
+    console.log('Server on port: ' + process.env.PORT);
 })
