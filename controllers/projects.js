@@ -1,22 +1,21 @@
-const Company = require('../models/company')
+const Project = require('../models/project')
 
 
-const getCompanies = async (req, res) => {
+const getProjects = async (req, res) => {
 
-    const companies = await Company.find()
-                                   .populate('user', 'name email');
+    const projects = await Project.find()
+                                   .populate('user', 'name');
 
     res.status(200).json({
         ok: true,
-        companies
+        projects
     });
 }
 
-
-const createCompany = async (req, res) => {
+const createProject = async (req, res) => {
 
     const id = req.id;
-    const company = new Company({
+    const project = new Project({
         user: id,
         ...req.body
     });
@@ -24,12 +23,12 @@ const createCompany = async (req, res) => {
 
     try {
         
-        const companyDB = await company.save();
+        const projectDB = await project.save();
 
 
         res.status(200).json({
             ok: true,
-            company: companyDB
+            project: projectDB
         });
 
     } catch (error) {
@@ -41,32 +40,32 @@ const createCompany = async (req, res) => {
     }
 }
 
-const updateCompany = async (req, res) => {
+const updateProject = async (req, res) => {
 
     const id = req.params.id
     const userId = req.id
 
     try {
-        const companies = await Company.findById(id);
+        const projects = await Project.findById(id);
 
-        if ( !companies ){
+        if ( !projects ){
             return res.status(404).json({
                 ok: false,
-                msg: "Empresa no encontrada"
+                msg: "Proyecto no encontrado"
             });
         }
 
-        const currentCompany = {
+        const currentProject = {
             ...req.body,
             user: userId,
         }
 
 
-        const companyUpdate = await Company.findByIdAndUpdate( id, currentCompany, { new: true } );
+        const projectUpdate = await Project.findByIdAndUpdate( id, currentProject, { new: true } );
 
         res.status(200).json({
             ok: true,
-            Comany: companyUpdate
+            project: projectUpdate
         });
         
     } catch (error) {
@@ -79,27 +78,27 @@ const updateCompany = async (req, res) => {
     }
 }
 
-const deleteCompany = async (req, res) => {
+const deleteProject = async (req, res) => {
 
     const id = req.params.id
     
     try {
         
-        const company = await Company.findById(id);
+        const project = await Project.findById(id);
 
-        if ( !company ){
+        if ( !project ){
             return res.status(404).json({
                 ok: false,
-                msg: "Empresa no encontrada"
+                msg: "Proyecto no encontrado"
             });
         }
 
 
-        await Company.findByIdAndDelete( id );
+        await Project.findByIdAndDelete( id );
 
         res.status(200).json({
             ok: true,
-            msg: "Empresa eliminada"
+            msg: "Proyecto eliminado"
         });
         
     } catch (error) {
@@ -111,11 +110,9 @@ const deleteCompany = async (req, res) => {
     }
 }
 
-    
-
 module.exports = {
-    getCompanies,
-    createCompany,
-    updateCompany,
-    deleteCompany
+    getProjects,
+    createProject,
+    updateProject,
+    deleteProject,
 }

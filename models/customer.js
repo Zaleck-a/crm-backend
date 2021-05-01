@@ -8,6 +8,10 @@ const CustomerSchema = Schema({
     img: {
         type: String,
     },
+    project:{
+        type: Schema.Types.ObjectId,
+        ref: 'Project',
+    },
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',

@@ -6,7 +6,7 @@ const getMenu = ( role = 'USER_ROLE') => {
           icon: 'nav-icon fas fa-tachometer-alt',
           submenu: [
             { title: 'Panel', url: '/'},
-            { title: 'ProbressBar', url: 'progress'},
+            { title: 'Progreso', url: 'progress'},
             { title: 'Gráficas', url: 'grafic1'},
             { title: 'Promesas', url: 'promesas'},
             { title: 'Rxjs', url: 'rxjs'},
@@ -18,6 +18,7 @@ const getMenu = ( role = 'USER_ROLE') => {
           submenu: [
             // { title: 'Usuarios', url: 'users'},
             { title: 'Clientes', url: 'customers'},
+            { title: 'Proyectos', url: 'projects'},
             { title: 'Empresas', url: 'companies'},
           ]
         }

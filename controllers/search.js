@@ -1,6 +1,7 @@
 const User = require('../models/user')
 const Customer = require('../models/customer')
 const Company = require('../models/company')
+const Project = require('../models/project')
 
 
 
@@ -52,6 +53,11 @@ const getDocumentCollection = async( req, res ) => {
             data = await Customer.find({ name: regex })
                                  .populate('user', 'name email')
                                  .populate('company', 'name img');
+
+        case 'projects':
+        data = await Project.find({ name: regex })
+                                .populate('user', 'name email')
+                                .populate('customer', 'name');
         
             break;
 

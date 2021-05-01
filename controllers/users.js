@@ -2,6 +2,15 @@ const User = require('../models/user')
 const bcrypt = require('bcryptjs');
 const { generateJwt } = require('../helpers/jwt');
 
+const getTotalUsers = async (req, res) => {
+
+    const users = await User.find();
+
+    res.status(200).json({
+        ok: true,
+        users
+    });
+}
 
 const getUsers = async (req, res) => {
 
@@ -161,4 +170,5 @@ module.exports = {
     createUser,
     uptdateUser,
     deleteUser,
+    getTotalUsers,
 }
