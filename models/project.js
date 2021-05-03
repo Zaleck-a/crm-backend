@@ -23,6 +23,9 @@ const ProjectSchema = Schema({
         type: String,
         default: 'Iniciado'
     },
+    price:{
+        type: String,
+    },
     delete:{
         type: Boolean,
         default: false

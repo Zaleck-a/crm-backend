@@ -6,6 +6,7 @@ const getMenu = ( role = 'USER_ROLE') => {
           icon: 'nav-icon fas fa-tachometer-alt',
           submenu: [
             { title: 'Panel', url: '/'},
+            { title: 'Ventas', url: 'sales'},
             { title: 'Progreso', url: 'progress'},
             { title: 'Gráficas', url: 'grafic1'},
             { title: 'Promesas', url: 'promesas'},
