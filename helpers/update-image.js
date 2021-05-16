@@ -68,8 +68,6 @@ const updateImage = async ( type, id, fileName ) => {
     
 }
 
-
-
 module.exports = {
     updateImage
 }
